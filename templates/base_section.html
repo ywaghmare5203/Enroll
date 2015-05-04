@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" media="screen" href="http://eonasdan.github.io/bootstrap-datetimepicker/content/bootstrap-datetimepicker.css" />
+
+<script type="text/javascript" src="http://eonasdan.github.io/bootstrap-datetimepicker/scripts/moment.js"></script>
+
+<script type="text/javascript" src="http://eonasdan.github.io/bootstrap-datetimepicker/scripts/bootstrap-datetimepicker.js"></script>
+
+<script>
+$(
+   function (){
+              $('.dateinput').datetimepicker({pickTime: false});
+              }
+);
+</script>
+
+{% endblock %}
+
+
+{% block content %}
+
+<center>
+<h3 class="center-block">MEDI-CAL PROVIDER APPLICATION</h3>
+</center>
+
+
+
+<ul class="nav nav-tabs">
+ {% for code, sec in sections %}
+  <li {% ifequal code active_code %}class="active" {% endifequal %}> 
+    <a href="{% url 'section_edit' code %}">{{ sec.title }}</a> 
+  </li>
+ {% endfor %}
+</ul>
+
+
+<div class="tab-content section_body">
+
+<button type="button" class="pull-right btn btn-default btn-lg" onclick="javascript: $('.help-block').slideToggle();">
+  <span class="glyphicon glyphicon-info-sign"></span>
+</button>
+<div class="clearfix"></div>
+
+
+{% block section %}
+{% endblock %}
+</div>
+
+
+
+{% endblock %}
